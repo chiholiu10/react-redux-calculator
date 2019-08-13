@@ -1,48 +1,60 @@
-import * as actionTypes from "../utils/actionTypes";
+import { types } from '../actions/index';
 
 const initialState = {
-    inputValue: 0,
-    resultValue: 0,
-    showingResult: false
-};
+    value: 0,
+    symbol: [],
+    numbers: [ "1", "2", "3", "4", "5", "6", "7", "8", "9", "0"],   
+    divide: [ "/" ],
+    reset: ["C"],
+    minus: ["-"],
+    multiply: ["*"],
+    result: ["="],
+    dot: ["."],
+    plus: ["+"]
+}
 
-const calculator = (state = initialState, action) => {
+export const calculator = (state = initialState, action) => {
+    const temporaryStore = state.value;
     switch (action.type) {
-        case actionTypes.INPUT_NUMBER:
+        case types.INPUT_NUMBER:
             return {
                 ...state,
-                inputValue: state.inputValue * 10 + action.number,
-                showingResult: false
+                value: state.value === 0 ? action.number : state.value + action.number
             }
-        case actionTypes.PLUS:
+
+        case types.PLUS:
+            console.log('plus');
             return {
-                ...state,
-                inputValue: 0,
-                resultValue: state.resultValue + state.inputValue,
-                showingResult: true
+                ...state
             }
-        case actionTypes.DIVIDE:
-            console.log(state.inputValue, state.resultValue)
+        case types.DIVIDE:
+            console.log('divide');
+            return {
+                ...state
+            }
+        case types.TIME:
+            console.log('time');
+            return {
+                ...state
+            }
+
+        case types.MINUS:
+            console.log(action.minus)
             return {
                 ...state,
-                inputValue: (state.resulValue === 0) ? 0 : state.resultValue,
-                resultValue: (state.resultValue > 0) ? state.resultValue : state.resultValue / state.inputValue,
-                showingResult: true
-            };
-        case actionTypes.TIME:
+                symbol: action.minus
+            }
+        case types.CLEAR: 
+            console.log('clear');
             return {
                 ...state,
-                inputValue: 1,
-                resultValue: state.resultValue * state.inputValue,
-                showingResult: true
-            };
-        case actionTypes.MINUS:
+                value: 0
+            }
+        case types.OUTPUT_RESULT: 
+            console.log('result');
             return {
-                ...state,
-                inputValue: 0,
-                resultValue: state.resultValue - state.inputValue,
-                showingResult: true
-            };
+                ...state
+            }
         default: 
             return state;
     }

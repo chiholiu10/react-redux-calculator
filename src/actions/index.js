@@ -3,25 +3,42 @@ export const types = {
     PLUS: 'PLUS',
     DIVIDE: 'DIVIDE',
     TIME:'TIME',
-    MINUS: 'MINUS'
+    MINUS: 'MINUS',
+    CLEAR: 'CLEAR',
+    OUTPUT_RESULT: 'OUTPUT_RESULT'
 }
 
 export const onNumClick = number => ({
     type: types.INPUT_NUMBER,
     number
-})
-export const onPlusClick = () => ({
-  type: types.PLUS
-})
+});
 
-export const onDivideClick = () => ({
-    type: types.DIVIDE
-})
+export const onPlusClick = plus => ({
+    type: types.PLUS,
+    plus
+});
 
-export const onTimeClick = () => ({
-    type: types.TIME
-})
+export const onDivideClick = divide => ({
+    type: types.DIVIDE,
+    divide
+});
 
-export const onMinusClick = () => ({
-    type: types.MINUS
-})
+export const onTimesClick = time => ({
+    type: types.TIME,
+    time
+});
+
+export const onMinusClick = minus => ({
+    type: types.MINUS,
+    minus
+});
+
+export const onClearClick = clear => ({
+    type: types.CLEAR,
+    clear
+});
+
+export const outputClick = output => ({
+    type: types.OUTPUT_RESULT,
+    output
+});

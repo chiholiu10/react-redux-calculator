@@ -1,20 +1,24 @@
 import React from "react";
 import { connect } from "react-redux";
-// import { onNumClick, onPlusClick, onDivideClick, onMinusClick, onTimeClick } from "../actions/index";
+import { MinusBtn, NumberBtn, PlusBtn, Result, TimesBtn, ClearBtn, CalculatorScreen } from '../components'; 
 
 const CalculatorContainer = () => {
   return (
     <div>
-      CalculatorContainer
+      <NumberBtn/>
+      <MinusBtn/>
+      <PlusBtn/>
+      <Result/>
+      <TimesBtn/>
+      <ClearBtn/>
+      <div>
+          <CalculatorScreen/>
+      </div>
     </div>
   )
-};
-
-const mapStateToProps = state => ({})
-
-const mapDispatchToProps = dispatch => ({});
+}
 
 export default connect(
-  mapStateToProps,
-  mapDispatchToProps
+  // mapStateToProps,
+  // mapDispatchToProps
 )(CalculatorContainer);
