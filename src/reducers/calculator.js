@@ -2,7 +2,9 @@ import { types } from '../actions/index';
 
 const initialState = {
     value: 0,
-    symbol: [],
+    history: 0,
+    comma: [","],
+    toggle: false,
     numbers: [ "1", "2", "3", "4", "5", "6", "7", "8", "9", "0"],   
     divide: [ "/" ],
     reset: ["C"],
@@ -10,11 +12,13 @@ const initialState = {
     multiply: ["*"],
     result: ["="],
     dot: ["."],
-    plus: ["+"]
+    plus: ["+"],
+    space: [" "],
+    tempArray: []
 }
 
 export const calculator = (state = initialState, action) => {
-    const temporaryStore = state.value;
+
     switch (action.type) {
         case types.INPUT_NUMBER:
             return {
@@ -23,17 +27,16 @@ export const calculator = (state = initialState, action) => {
             }
 
         case types.PLUS:
-            console.log('plus');
+            console.log(state.value)
             return {
-                ...state
+                ...state,
+                value: state.value
             }
         case types.DIVIDE:
-            console.log('divide');
             return {
                 ...state
             }
         case types.TIME:
-            console.log('time');
             return {
                 ...state
             }
@@ -51,7 +54,6 @@ export const calculator = (state = initialState, action) => {
                 value: 0
             }
         case types.OUTPUT_RESULT: 
-            console.log('result');
             return {
                 ...state
             }
