@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 const CalculatorScreen = ({value}) => {
     return (
-        <div>
+        <div className="screen">
             {value }
         </div>
     )

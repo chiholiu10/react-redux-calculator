@@ -11,9 +11,7 @@ const CalculatorContainer = () => {
       <Result/>
       <TimesBtn/>
       <ClearBtn/>
-      <div>
-          <CalculatorScreen/>
-      </div>
+      <CalculatorScreen/>
     </div>
   )
 }
