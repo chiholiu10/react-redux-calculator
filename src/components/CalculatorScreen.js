@@ -10,7 +10,7 @@ const CalculatorScreen = ({value}) => {
 }
 
 const mapStateToProps = state => ({
-    value: state.calculator.value
+    value: state.calculator.display
 });
 
 export default connect(mapStateToProps, null)(CalculatorScreen)
