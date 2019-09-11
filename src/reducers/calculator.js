@@ -2,7 +2,13 @@ import { types } from '../actions/index';
 
 const initialState = {
     value: 0,
+<<<<<<< HEAD
     history: "0",
+=======
+    history: 0,
+    comma: [","],
+    toggle: false,
+>>>>>>> 4efef060d361f2be6bc1f5951b1dfba4d16c4984
     numbers: [ "1", "2", "3", "4", "5", "6", "7", "8", "9", "0"],   
     divide: [ "/" ],
     reset: ["C"],
@@ -11,13 +17,17 @@ const initialState = {
     result: ["="],
     dot: ["."],
     plus: ["+"],
+<<<<<<< HEAD
     display: '0',
     prevOp: "",
     accumulated: "0",
+=======
+    space: [" "],
+    tempArray: []
+>>>>>>> 4efef060d361f2be6bc1f5951b1dfba4d16c4984
 }
 
 export const calculator = (state = initialState, action) => {
-    
     switch (action.type) {
         case types.INPUT_NUMBER:
             const updateDisplay = action.payload;
@@ -51,7 +61,6 @@ export const calculator = (state = initialState, action) => {
                 ...state
             }
         case types.TIME:
-            console.log('time');
             return {
                 ...state
             }
