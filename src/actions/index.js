@@ -19,21 +19,21 @@ export const onNumClick = number => ({
 export const onPlusClick = plus => ({
     type: types.PLUS,
     payload: {
-        operation: plus
+        operation: "operator"
     }
 });
 
 export const onDivideClick = divide => ({
     type: types.DIVIDE,
     payload: {
-        operation: divide
+        operation: "operator"
     }
 });
 
 export const onTimesClick = time => ({
     type: types.TIME,
     payload: {
-        operation: time
+        operation: "operator"
     }
    
 });
@@ -41,14 +41,14 @@ export const onTimesClick = time => ({
 export const onMinusClick = minus => ({
     type: types.MINUS,
     payload: {
-        operation: minus
+        operation: "operator"
     }
 });
 
 export const onClearClick = clear => ({
     type: types.CLEAR,
     payload: {
-        operation: clear
+        operation: "clear"
     }
 
 });

@@ -21,7 +21,7 @@ export const calculator = (state = initialState, action) => {
     switch (action.type) {
         case types.INPUT_NUMBER:
             const updateDisplay = action.payload;
-            console.log('click')
+            
             if((state.display.includes('.') && updateDisplay.input === ".") || state.display.length > 8) {
                 return {
                     ...state
@@ -36,21 +36,24 @@ export const calculator = (state = initialState, action) => {
            
 
         case types.PLUS:
+            const history = () => state.prevOp === "operator" ? state.history.slice(0, state.history.length - 4) : state.history;
             return {
                 ...state,
-                value: state.value
+                display: state.display,
+                history: state.history == "0" && state.accumulated == "0" ? state.display + " + " : state.accumulated != "0" ? state.accumulated + " + " : history() + state.display + " + ",
+                prevOp: "operator"
             }
+          
         case types.DIVIDE:
             console.log('divide');
+
             return {
-                ...state,
-                value: state.value
+                ...state
             }
         case types.TIME:
             console.log('time');
             return {
-                ...state,
-                value: state.value
+                ...state
             }
 
         case types.MINUS:   
@@ -62,14 +65,18 @@ export const calculator = (state = initialState, action) => {
         case types.CLEAR: 
             console.log('clear');
             return {
-                ...state,
-                value: 0
+                ...state
             }
         case types.OUTPUT_RESULT: 
-            console.log('result');
+            let states = state.history + state.display;
+            let maths = eval(states);
+
             return {
                 ...state,
-                value: state.value
+                history: maths.toString(),
+                display: maths.toString(),
+                accumulated: maths.toString(),
+                prevOp: "equal"
             }
         default: 
             return state;
