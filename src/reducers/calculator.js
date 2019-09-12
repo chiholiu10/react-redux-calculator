@@ -13,54 +13,79 @@ const initialState = {
     result: ["="],
     dot: ["."],
     plus: ["+"],
-    display: '0',
-    prevOp: "",
+    display: "0",
     accumulated: "0",
-    space: [" "],
-    tempArray: [],
-    display: 0,
     prevOp: "",
-    accumulated: "0",
-    history: '0',
-    tempArray: []
+    counter: 0
 }
 
 export const calculator = (state = initialState, action) => {
     
     switch (action.type) {
         case types.INPUT_NUMBER:
-            return {
-                ...state,
-                value: state.value === 0 ? action.number : state.value.indexOf(0) === 0 ? '' : state.value + action.number
-            }
+            const updateDisplay = action.payload;
+            let history;
+            let checkOperators = state.counter;
+            
+            if ((state.display.includes('.') && updateDisplay.input === ".") || state.display.length > 8) {
+                return {
+                  ...state,
+                }
+              } else {
+                return {
+                  ...state,
+                  display: state.display == '0' || state.prevOp === "operator" ? updateDisplay.input
+                    : state.display + updateDisplay.input,
+                  prevOp: updateDisplay.operation,
+                }
+              }
            
 
         case types.PLUS:
-            const history = () => state.prevOp === "operator" ? state.history.slice(0, state.history.length - 4) : state.history;
-            
+            history = () => state.prevOp === "operator" ? state.history.slice(0, state.history.length - 4)
+                : state.history;
+            // checkOperators++;
+            console.log(checkOperators);
+
+            // if(checkOperators == 1) {
+            //     console.log('correct');
+            // }
             return {
                 ...state,
-                history: state.value
+                display: state.display,
+                history: state.history == '0' && state.accumulated == "0" ? state.display + " + " : state.accumulated !== "0" ? state.accumulated + " + " : history() + state.display + " + ",
+                prevOp: "operator"
             }
-
         case types.DIVIDE:
-            console.log('divide');
+            history = () => state.prevOp === "operator" ? state.history.slice(0, state.history.length - 4)
+                : state.history;
 
             return {
                 ...state,
-                value: state.value + action.divide 
+                display: state.display,
+                history: state.history == '0' && state.accumulated == "0" ? state.display + " / " : state.accumulated !== "0" ? state.accumulated + " / " : history() + state.display + " / ",
+                prevOp: "operator"
             }
 
         case types.TIME:
+            history = () => state.prevOp === "operator" ? state.history.slice(0, state.history.length - 4)
+                : state.history;
+
             return {
                 ...state,
-                value: state.value + action.time
+                display: state.display,
+                history: state.history == '0' && state.accumulated == "0" ? state.display + " * " : state.accumulated !== "0" ? state.accumulated + " * " : history() + state.display + " * ",
+                prevOp: "operator"
             }
             
         case types.MINUS:   
+            history = () => state.prevOp === "operator" ? state.history.slice(0, state.history.length - 4) : state.history;
+            
             return {
                 ...state,
-                value: state.value
+                display: state.display,
+                history: state.history == '0' && state.accumulated == "0" ? state.display + " - " : state.accumulated != "0" ? state.accumulated + " - " : history() + state.display + " - ",
+                prevOp: "operator"
             }
 
         case types.CLEAR: 
@@ -71,7 +96,6 @@ export const calculator = (state = initialState, action) => {
         case types.OUTPUT_RESULT: 
             let states = state.history + state.display;
             let maths = eval(states);
-            console.log(maths);
             return {
                 ...state,
                 history: maths.toString(),
