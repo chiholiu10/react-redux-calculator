@@ -13,4 +13,4 @@ const mapStateToProps = state => ({
     value: state.calculator.value
 });
 
-export default connect(mapStateToProps, null)(CalculatorScreen)
+export default connect(mapStateToProps, null)(CalculatorScreen);

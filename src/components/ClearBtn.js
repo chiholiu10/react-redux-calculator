@@ -17,7 +17,6 @@ const ClearBtn = ({ clearBtn, onClearClick }) => {
             { clear }
         </div>
     )
-   
 }
 
 const mapDispatchToProps = dispatch => ({

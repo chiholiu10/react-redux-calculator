@@ -8,7 +8,6 @@ import CalculatorContainer from './container/CalculatorContainer';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 
-
 const store = createStore(calculator);
 
 const App = () => ( 
