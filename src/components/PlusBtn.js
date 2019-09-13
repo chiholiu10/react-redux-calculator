@@ -5,7 +5,7 @@ import { onPlusClick } from '../actions';
 const PlusBtn = ({ plusBtn, onPlusClick}) => {
     let plus = plusBtn.map((btn, index) => {
         return (
-            <div key={index} onClick={() => onPlusClick(btn)}>
+            <div key={index} onClick={() => onPlusClick()}>
                 { btn }
             </div>
         )
@@ -20,7 +20,7 @@ const PlusBtn = ({ plusBtn, onPlusClick}) => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        onPlusClick: minus => dispatch(onPlusClick(minus))
+        onPlusClick: () => dispatch(onPlusClick())
     }
 }
 

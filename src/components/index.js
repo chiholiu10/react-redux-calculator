@@ -5,6 +5,7 @@ import Result from './Result';
 import TimesBtn from './TimesBtn';
 import ClearBtn from './ClearBtn';
 import CalculatorScreen from './CalculatorScreen';
+import DivideBtn from './DivideBtn';
 
 export {
     MinusBtn,
@@ -13,5 +14,6 @@ export {
     Result,
     TimesBtn,
     ClearBtn,
+    DivideBtn,
     CalculatorScreen
 }

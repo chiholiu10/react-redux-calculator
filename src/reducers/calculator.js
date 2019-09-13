@@ -25,10 +25,8 @@ export const calculator = (state = initialState, action) => {
         case types.INPUT_NUMBER:
             const updateDisplay = action.payload;
             let history;
-            console.log(state.checkClick);
-            
-            if ((state.display.includes('.') && updateDisplay.input === ".") || state.display.length > 8) {
-                console.log('hello')
+
+            if((state.display.includes('.') && updateDisplay.input === ".") || state.display.length > 8 || state.checkClick ) {
                 return {
                     ...state
                 }
@@ -42,7 +40,7 @@ export const calculator = (state = initialState, action) => {
            
         case types.PLUS:
             history = () => state.prevOp === "operator" ? state.history.slice(0, state.history.length - 4) : state.history;
-            
+            console.log('plus');
             return {
                 ...state,
                 display: state.display,
@@ -53,7 +51,7 @@ export const calculator = (state = initialState, action) => {
 
         case types.DIVIDE:
             history = () => state.prevOp === "operator" ? state.history.slice(0, state.history.length - 4) : state.history;
-
+            console.log('clicked');
             return {
                 ...state,
                 display: state.display,

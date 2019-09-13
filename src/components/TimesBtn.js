@@ -5,7 +5,7 @@ import { onTimesClick } from '../actions';
 const TimesBtn = ({ timesBtn, onTimesClick }) => {
     let minus = timesBtn.map((btn, index) => {
         return (
-            <div key={index} onClick={() => onTimesClick(btn)}>
+            <div key={index} onClick={() => onTimesClick()}>
                 {btn}
             </div>
         )
@@ -19,7 +19,7 @@ const TimesBtn = ({ timesBtn, onTimesClick }) => {
 } 
 
 const mapDispatchToProps = dispatch => ({
-    onTimesClick: minus => dispatch(onTimesClick(minus))
+    onTimesClick: () => dispatch(onTimesClick())
 })
 
 const mapStateToProps = state => ({

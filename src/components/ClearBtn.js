@@ -5,7 +5,7 @@ import { onClearClick } from '../actions';
 const ClearBtn = ({ clearBtn, onClearClick }) => {
     let clear = clearBtn.map((btn, index) => {
         return (
-            <div key={index} onClick={() => onClearClick(btn)}>
+            <div key={index} onClick={() => onClearClick()}>
                 { btn }
                 Clear
             </div>
@@ -20,7 +20,7 @@ const ClearBtn = ({ clearBtn, onClearClick }) => {
 }
 
 const mapDispatchToProps = dispatch => ({
-    onClearClick: clear => dispatch(onClearClick(clear))
+    onClearClick: ( )=> dispatch(onClearClick())
 })  
 
 const mapStateToProps = state => ({

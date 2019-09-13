@@ -5,7 +5,7 @@ import { onMinusClick } from '../actions';
 const MinusBtn = ({ minusBtn, onMinusClick }) => {
     let minus = minusBtn.map((btn, index) => {
         return (
-            <div key={index} onClick={() => onMinusClick(btn)}>
+            <div key={index} onClick={() => onMinusClick()}>
                 {btn}
             </div>
         )
@@ -19,7 +19,7 @@ const MinusBtn = ({ minusBtn, onMinusClick }) => {
 } 
 
 const mapDispatchToProps = dispatch => ({
-    onMinusClick: minus => dispatch(onMinusClick(minus))
+    onMinusClick: () => dispatch(onMinusClick())
 })
 
 const mapStateToProps = state => ({
