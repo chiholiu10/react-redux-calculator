@@ -16,7 +16,7 @@ const initialState = {
     display: "0",
     accumulated: "0",
     prevOp: "",
-    counter: 0
+    checkClick: false
 }
 
 export const calculator = (state = initialState, action) => {
@@ -25,57 +25,52 @@ export const calculator = (state = initialState, action) => {
         case types.INPUT_NUMBER:
             const updateDisplay = action.payload;
             let history;
-            let checkOperators = state.counter;
+            console.log(state.checkClick);
             
             if ((state.display.includes('.') && updateDisplay.input === ".") || state.display.length > 8) {
+                console.log('hello')
                 return {
-                  ...state,
+                    ...state
                 }
-              } else {
+            }  else {
                 return {
-                  ...state,
-                  display: state.display == '0' || state.prevOp === "operator" ? updateDisplay.input
-                    : state.display + updateDisplay.input,
-                  prevOp: updateDisplay.operation,
+                    ...state,
+                    display: state.display == '0' || state.prevOp === "operator" ? updateDisplay.input : state.display + updateDisplay.input,
+                    prevOp: updateDisplay.operation
                 }
-              }
+            }
            
-
         case types.PLUS:
-            history = () => state.prevOp === "operator" ? state.history.slice(0, state.history.length - 4)
-                : state.history;
-            // checkOperators++;
-            console.log(checkOperators);
-
-            // if(checkOperators == 1) {
-            //     console.log('correct');
-            // }
+            history = () => state.prevOp === "operator" ? state.history.slice(0, state.history.length - 4) : state.history;
+            
             return {
                 ...state,
                 display: state.display,
                 history: state.history == '0' && state.accumulated == "0" ? state.display + " + " : state.accumulated !== "0" ? state.accumulated + " + " : history() + state.display + " + ",
-                prevOp: "operator"
+                prevOp: "operator",
+                checkClick: false
             }
+
         case types.DIVIDE:
-            history = () => state.prevOp === "operator" ? state.history.slice(0, state.history.length - 4)
-                : state.history;
+            history = () => state.prevOp === "operator" ? state.history.slice(0, state.history.length - 4) : state.history;
 
             return {
                 ...state,
                 display: state.display,
                 history: state.history == '0' && state.accumulated == "0" ? state.display + " / " : state.accumulated !== "0" ? state.accumulated + " / " : history() + state.display + " / ",
-                prevOp: "operator"
+                prevOp: "operator", 
+                checkClick: false
             }
 
         case types.TIME:
-            history = () => state.prevOp === "operator" ? state.history.slice(0, state.history.length - 4)
-                : state.history;
+            history = () => state.prevOp === "operator" ? state.history.slice(0, state.history.length - 4) : state.history;
 
             return {
                 ...state,
                 display: state.display,
                 history: state.history == '0' && state.accumulated == "0" ? state.display + " * " : state.accumulated !== "0" ? state.accumulated + " * " : history() + state.display + " * ",
-                prevOp: "operator"
+                prevOp: "operator",
+                checkClick: false
             }
             
         case types.MINUS:   
@@ -85,7 +80,8 @@ export const calculator = (state = initialState, action) => {
                 ...state,
                 display: state.display,
                 history: state.history == '0' && state.accumulated == "0" ? state.display + " - " : state.accumulated != "0" ? state.accumulated + " - " : history() + state.display + " - ",
-                prevOp: "operator"
+                prevOp: "operator",
+                checkClick: false
             }
 
         case types.CLEAR: 
@@ -96,12 +92,20 @@ export const calculator = (state = initialState, action) => {
         case types.OUTPUT_RESULT: 
             let states = state.history + state.display;
             let maths = eval(states);
-            return {
-                ...state,
-                history: maths.toString(),
-                display: maths.toString(),
-                accumulated: maths.toString(),
-                prevOp: "equal"
+
+            if(state.checkClick == true) {
+                return {
+                    ...state
+                }
+            } else {
+                return {
+                    ...state,
+                    history: maths.toString(),
+                    display: maths.toString(),
+                    accumulated: maths.toString(),
+                    prevOp: "equal",
+                    checkClick: true
+                }
             }
 
         default: 

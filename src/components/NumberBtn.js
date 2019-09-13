@@ -4,11 +4,11 @@ import { onNumClick } from '../actions';
 
 const NumberBtn = ({ numberBtns, onNumClick }) => {
     let calcButtons = numberBtns.map((btns, index) => {
-        return (
-          <div key={index} onClick={() => onNumClick(btns)}>
-            { btns }
-          </div>
-        )
+      return (
+        <div key={index} onClick={() => onNumClick(btns)}>
+          { btns }
+        </div>
+      )
     });
     
     return (
